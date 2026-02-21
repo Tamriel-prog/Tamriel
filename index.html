@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Board Score Hub · Segnapunti Giochi da Tavolo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <p class="eyebrow">Board Score Hub</p>
+      <h1>Segnapunti universale per giochi da tavolo (fino al 2026)</h1>
+      <p class="subtitle">
+        Gestisci punteggi, round, categorie e statistiche per eurogame, ameritrash, party game,
+        giochi di carte, cooperativi, legacy, roll &amp; write, skirmish e molto altro.
+      </p>
+    </div>
+    <div class="header-actions">
+      <button id="saveSessionBtn" class="btn btn-secondary">Salva sessione</button>
+      <button id="resetBtn" class="btn btn-danger">Reset totale</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="panel">
+      <h2>1) Configura partita</h2>
+      <div class="form-grid">
+        <label>
+          Nome partita
+          <input id="sessionName" type="text" placeholder="Es. Serata Terraforming Mars" maxlength="60" />
+        </label>
+
+        <label>
+          Sistema punteggio
+          <select id="scoreMode">
+            <option value="highest">Vince il punteggio più alto</option>
+            <option value="lowest">Vince il punteggio più basso</option>
+          </select>
+        </label>
+
+        <label>
+          Tipo di gioco
+          <select id="gameTypeSelect"></select>
+        </label>
+
+        <label>
+          Preset categorie
+          <select id="categoryPresetSelect"></select>
+        </label>
+      </div>
+
+      <div class="row-buttons">
+        <button id="applyPresetBtn" class="btn">Applica preset categorie</button>
+        <button id="addRoundBtn" class="btn btn-secondary">Aggiungi round</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>2) Giocatori</h2>
+      <div class="player-controls">
+        <input id="playerNameInput" type="text" placeholder="Nome giocatore" maxlength="30" />
+        <button id="addPlayerBtn" class="btn">Aggiungi giocatore</button>
+      </div>
+      <ul id="playersList" class="pill-list"></ul>
+    </section>
+
+    <section class="panel">
+      <h2>3) Categorie punteggio</h2>
+      <div class="player-controls">
+        <input id="categoryNameInput" type="text" placeholder="Es. Bonus finale / Obiettivi / Penalità" maxlength="30" />
+        <button id="addCategoryBtn" class="btn">Aggiungi categoria</button>
+      </div>
+      <ul id="categoriesList" class="pill-list"></ul>
+    </section>
+
+    <section class="panel wide">
+      <div class="table-head">
+        <h2>4) Inserisci punteggi</h2>
+        <div class="table-head-actions">
+          <button id="fillZerosBtn" class="btn btn-secondary">Compila vuoti con 0</button>
+          <button id="exportCsvBtn" class="btn btn-secondary">Esporta CSV</button>
+        </div>
+      </div>
+      <div id="scoreGridWrapper" class="score-grid-wrapper"></div>
+    </section>
+
+    <section class="panel">
+      <h2>5) Classifica finale</h2>
+      <ol id="leaderboard" class="leaderboard"></ol>
+    </section>
+
+    <section class="panel">
+      <h2>Statistiche rapide</h2>
+      <dl id="stats" class="stats"></dl>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <p>
+      Suggerimento: usa le categorie per simulare punteggi tipici di giochi diversi
+      (es. "Tracciati", "Maggioranze", "Missioni", "Penalità", "Boss sconfitto").
+    </p>
+  </footer>
+
+  <template id="pillTemplate">
+    <li class="pill-item">
+      <span class="pill-label"></span>
+      <button class="pill-remove" aria-label="Rimuovi">×</button>
+    </li>
+  </template>
+
+  <script src="script.js"></script>
+</body>
+</html>
